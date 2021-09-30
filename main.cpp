@@ -1,47 +1,37 @@
 #include <iostream>
 using namespace std;
 
-    int binarySearch(int A[], int num1, int num2, int a)
-    {  
-    if (num1 > num2) 
-    {
-        return -1;
-    }
-    int mid = (num1 + num2) / 2;
-    if (a == A[mid]) 
-    {
-        return mid;
-    }
-    else if (a < A[mid]) 
-    {
-        return binarySearch(A, num1,  mid - 1, a);
-    }
-    else 
-    {
-        return binarySearch(A, mid + 1,  num2, a);
-    }
-    return 1;
-}
+int binarySearch(int A[],int num1, int num2, int a)
+	{
+        
+		while (num1 <= num2)
+		{
+			int mid = (num1 + num2) / 2;
+			if (a == A[mid]) 
+			{
+				return mid;
+			}
+			else if (a < A[mid]) 
+			{
+				num2 = mid - 1;
+			}
+			else 
+			{
+			num1 = mid + 1;
+			}
+		}
+		return -1;
+	}
 
-int main()
-{
-    int arr[6], num3, num4;
-    cout<<"Enter the desired elements: ";
-    int i;
-    for(i=0;i<6;i++)
-    cin>>arr[i];
-    cout<<"Enter element to search: ";
-    cin>>num3;
-    num4=binarySearch(arr,0,5,num3);
-    if(num4==1)
-    { 
-        cout<<"Oops! no match found,try again."<<endl;
-    } 
+    int main(void)
+    {int A[]={10,20,30,40,50,60,70,80,90,100};
+    int n=sizeof(A)/sizeof(A[0]);
+    int num=50;
+    int index=binarySearch(A,0,n-1,num);
+    if (index==-1)
+    {cout<<num<<"Value not found.";}
     else
-    {
-        cout<<"The element is at index: "<<num4<<" & position: "<<num4+1<<endl;
-    }
+    {cout<<" The said value "<<num<<" is at index no."<<index;}
     return 0;
 }
-
 
